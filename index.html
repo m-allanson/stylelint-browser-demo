@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <meta charset="utf-8">
+    <title>Stylelint in-browser demo</title>
+    <style>
+      body {
+        padding: 10px;
+      }
+
+      textarea {
+        width: 100%;
+        min-height: 100px;
+      }
+
+      #run {
+        font-size: 30px;
+        background-color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>CSS</h1>
+    <textarea id="source">a {} b { color: #fff; }</textarea>
+
+    <h1>Config</h1>
+    <textarea id="config">{"rules": { "block-no-empty": true, "color-no-hex": true } }</textarea>
+
+    <h1>Result</h1>
+    <pre id="results"></pre>
+
+    <button id="run">Lint</button>
+    <script type="text/javascript" src="bundle.js"></script>
+  </body>
+</html>
