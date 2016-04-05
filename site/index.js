@@ -1,4 +1,5 @@
 import { lint } from "stylelint"
+import standardConfig from "stylelint-config-standard"
 
 const sourceEl = document.querySelector(".Source")
 const configEl = document.querySelector(".Config")
@@ -48,6 +49,8 @@ function run() {
     })
   }
 }
+
+configEl.innerHTML = JSON.stringify(standardConfig, null, 2)
 
 sourceEl.addEventListener("change", run)
 sourceEl.addEventListener("keyup", run)
