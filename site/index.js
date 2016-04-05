@@ -1,4 +1,4 @@
-import lint from "stylelint/dist/restricted"
+import { lint } from "stylelint"
 
 const sourceEl = document.getElementById("source")
 const configEl = document.getElementById("config")
