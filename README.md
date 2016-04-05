@@ -2,7 +2,7 @@
 
 This project demonstrates [stylelint](https://github.com/stylelint/stylelint)  running in a browser.
 
-A live demo can be seen at https://stylelint-browser-demo.herokuapp.com/
+A live demo can be seen at http://m-allanson.github.io/stylelint-browser-demo/
 
 # Getting started
 
