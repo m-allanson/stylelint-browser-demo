@@ -4,7 +4,9 @@ import path from "path"
 export default {
   entry: "./site/index.js",
   output: {
-    filename: "./site/bundle.js",
+    path: path.resolve(__dirname, "site"),
+    publicPath: "/",
+    filename: "bundle.js",
   },
   resolve: {
     root: path.resolve(__dirname),
@@ -17,7 +19,10 @@ export default {
       multimatch: "empty-module",
       path: "empty-module",
     },
-    modulesDirectories: ["node_modules", "site"]
+    modulesDirectories: [
+      "node_modules",
+      "site",
+    ]
   },
   module: {
     loaders: [

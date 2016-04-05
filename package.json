@@ -5,6 +5,7 @@
   "main": "site/bundle.js",
   "scripts": {
     "start": "npm run build && http-server ./site",
+    "start-dev": "webpack-dev-server --content-base site/ --hot --inline",
     "build": "webpack --progress --colors && stat -f%z site/bundle.js",
     "lint": "eslint . --ignore-path .gitignore",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -22,8 +23,9 @@
     "webpack": "^1.12.14"
   },
   "devDependencies": {
+    "eslint": "^2.4.0",
     "eslint-config-stylelint": "^1.0.0",
-    "eslint": "^2.4.0"
+    "webpack-dev-server": "^1.14.1"
   },
   "engines": {
     "node": "5.9.1",

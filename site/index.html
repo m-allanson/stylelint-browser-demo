@@ -14,23 +14,28 @@
         min-height: 100px;
       }
 
-      #run {
-        font-size: 30px;
-        background-color: green;
+      .Console {
+        color: red;
+        font-weight: bold;
       }
     </style>
   </head>
   <body>
-    <h1>CSS</h1>
-    <textarea id="source">a {} b { color: #fff; }</textarea>
-
-    <h1>Config</h1>
-    <textarea id="config">{"rules": { "block-no-empty": true, "color-no-hex": true } }</textarea>
-
-    <h1>Result</h1>
-    <pre id="results"></pre>
-
-    <button id="run">Lint</button>
+    <div class="Container">
+      <div class="Section Section--source">
+        <h1>CSS</h1>
+        <textarea class="Source" spellcheck="false">a {} b { color: #fff; }</textarea>
+      </div>
+      <div class="Section Section--output">
+        <h1>Results</h1>
+        <pre class="Results"></pre>
+        <div class="Console"></div>
+      </div>
+      <div class="Section Section--config">
+        <h1>Config</h1>
+        <textarea class="Config" spellcheck="false">{"rules": { "block-no-empty": true, "color-no-hex": true } }</textarea>
+      </div>
+    </div>
     <script type="text/javascript" src="bundle.js"></script>
   </body>
 </html>

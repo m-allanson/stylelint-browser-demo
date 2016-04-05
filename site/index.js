@@ -1,30 +1,57 @@
 import { lint } from "stylelint"
 
-const sourceEl = document.getElementById("source")
-const configEl = document.getElementById("config")
-const resultsEl = document.getElementById("results")
-const lintEl = document.getElementById("run")
-const options = {}
-let results = ""
+const sourceEl = document.querySelector(".Source")
+const configEl = document.querySelector(".Config")
+const resultsEl = document.querySelector(".Results")
+const consoleEl = document.querySelector(".Console")
 
-const run = () => {
-  options.code = sourceEl.value
+function parseConfig(config) {
   try {
-    options.config = JSON.parse(configEl.value)
+    return JSON.parse(config)
   } catch (err) {
-    window.alert(`Failed to parse stylelint config with error:\n\n ${err}`)
-    return
+    renderError(`There was a problem with the config:\n\n ${err}`)
+    return false
   }
-
-  lint(options).then(output => {
-    for (const w of output.results[0].warnings) {
-      results += `Line ${w.line}, Col ${w.column}: ${w.text}\n`
-    }
-    resultsEl.innerHTML = results
-    results = ""
-  }).catch(err => {
-    window.alert(`Failed to parse CSS with error:\n\n ${err}`)
-  })
 }
 
-lintEl.addEventListener("click", run)
+function renderWarnings(warnings) {
+  let parsedWarnings = ""
+  consoleEl.innerHTML = ""
+
+  for (const w of warnings) {
+    parsedWarnings += `Line ${w.line}, Col ${w.column}: ${w.text}\n`
+  }
+
+  resultsEl.innerHTML = parsedWarnings
+}
+
+function renderError(message) {
+  resultsEl.innerHTML = ""
+  consoleEl.innerHTML = message
+}
+
+function lintCSS(options) {
+  lint(options)
+    .then(output => {
+      renderWarnings(output.results[0].warnings)
+    }).catch(err => {
+      renderError(`Failed to lint CSS! \n\n ${err}`)
+    })
+}
+
+function run() {
+  const config = parseConfig(configEl.value)
+  if (config) {
+    lintCSS({
+      code: sourceEl.value,
+      config,
+    })
+  }
+}
+
+sourceEl.addEventListener("change", run)
+sourceEl.addEventListener("keyup", run)
+configEl.addEventListener("change", run)
+configEl.addEventListener("keyup", run)
+
+run()
